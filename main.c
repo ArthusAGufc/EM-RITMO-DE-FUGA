@@ -13,7 +13,7 @@ void Menu(){
         int PosY = 137; 
 
         //Plano De Fundo
-        Music music = LoadMusicStream("Imagens/Music/Teste.wav");
+        Music music = LoadMusicStream("Imagens/Music/Theme.wav");
         Texture2D background = LoadTexture("Imagens/Menu/MainMenu-1.png");
         SetTargetFPS(50);
         
