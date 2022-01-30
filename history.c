@@ -6,7 +6,7 @@ void History(){
 
     Windows();
 
-    Music music = LoadMusicStream("Imagens/Music/Teste.wav");
+    Music music = LoadMusicStream("Imagens/Music/Theme.wav");
     
     while (!WindowShouldClose()){
         SetMusicVolume(music, volume);
