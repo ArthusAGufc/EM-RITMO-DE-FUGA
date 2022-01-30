@@ -7,7 +7,7 @@ void Settings(){
 
     //Carregando mídias
     Texture2D config = LoadTexture("Imagens/Credits/Config.png");
-    Music music = LoadMusicStream("Imagens/Music/Teste.wav");
+    Music music = LoadMusicStream("Imagens/Music/Theme.wav");
     
     SetTargetFPS(50);
 
