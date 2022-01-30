@@ -27,7 +27,7 @@ void Game(){
     Texture2D background = LoadTexture("Imagens/Maps/cidade.png");
 
     //Música
-    Music music = LoadMusicStream("Imagens/Music/Teste.wav");
+    Music music = LoadMusicStream("Imagens/Music/Theme.wav");
 
     //Solo
     Texture2D retangulo = LoadTexture("Imagens/Maps/retangulo-2.png");
