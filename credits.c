@@ -9,7 +9,7 @@ void Credits(){
     Texture2D background = LoadTexture("Imagens/Credits/Credits.png");
 
     //Música
-    Music music = LoadMusicStream("Imagens/Music/Teste.wav");
+    Music music = LoadMusicStream("Imagens/Music/Theme.wav");
 
     SetTargetFPS(50);
     
