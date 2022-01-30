@@ -3,18 +3,21 @@
 
 void Credits(){
     // Initialization 
-    const int screenWidth = 800;
-    const int screenHeight = 500;
-
-    InitWindow(screenWidth, screenHeight, "Ritmo De Fuga");  
+    Windows();
 
     //Plano De Fundo
     Texture2D background = LoadTexture("Imagens/Credits/Credits.png");
+
+    //Música
+    Music music = LoadMusicStream("Imagens/Music/Teste.wav");
 
     SetTargetFPS(50);
     
     // Main game loop
     while (!WindowShouldClose()){// Detect window close button or ESC key
+        SetMusicVolume(music, volume);
+        PlayMusicStream(music);
+        
         if (IsKeyPressed(KEY_BACKSPACE)){
             CloseWindow();
             Menu();   
@@ -24,9 +27,11 @@ void Credits(){
             ClearBackground(BLACK);
             DrawTextureV(background, (Vector2) {0,0},WHITE);
         EndDrawing();  
-    }
 
+        UpdateMusicStream(music);
+    }
     UnloadTexture(background);
+    UnloadMusicStream(music);
 
     CloseWindow();
     
