@@ -3,7 +3,9 @@
 #include <credits.c>
 #include <shop.c>
 #include <history.c>
+#include <settings.c>
 #include "jogo.h"
+
 
 void Menu(){
         // Initialization 
@@ -11,12 +13,14 @@ void Menu(){
         int PosY = 137; 
 
         //Plano De Fundo
+        Music music = LoadMusicStream("Imagens/Music/Teste.wav");
         Texture2D background = LoadTexture("Imagens/Menu/MainMenu-1.png");
-
         SetTargetFPS(50);
         
         // Main game loop
         while (!WindowShouldClose() || IsKeyPressed(KEY_ENTER)){// Detect window close button or ESC key
+            PlayMusicStream(music);
+            SetMusicVolume(music, volume);
             if (IsKeyPressed(KEY_S) || IsKeyPressed(KEY_DOWN)){
                 PosY += 60;
                 if (PosY>377){
@@ -29,6 +33,7 @@ void Menu(){
                     PosY = 137;
                 } 
             }
+
 
             if (PosY == 137 && IsKeyPressed(KEY_ENTER)){
                 /* code */
@@ -49,22 +54,29 @@ void Menu(){
             }
             
             else if (PosY == 377 && IsKeyPressed(KEY_ENTER)){
-                /* code */
+                CloseWindow();
+                Settings();
             }
-            
+
+
+
             BeginDrawing();
                 ClearBackground(BLACK);
-                DrawTextureV(background, (Vector2) {0,0},WHITE);
+                DrawTextureV(background, (Vector2) {0, 0},WHITE);
                 DrawRectangleRoundedLines((Rectangle){280, PosY, 240, 30},0.3,5,5,LIGHTGRAY);
             EndDrawing();  
+            UpdateMusicStream(music);
         }
 
+        
         UnloadTexture(background);
-
+        UnloadMusicStream(music);
         CloseWindow();// Close window and OpenGL context
     }
 
 int main(){
+    InitAudioDevice();
     Menu();
+    CloseAudioDevice();
     return 0;
 }
