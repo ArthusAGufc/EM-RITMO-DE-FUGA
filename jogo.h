@@ -1,6 +1,9 @@
 #ifndef Ritmo
 #define Ritmo
 
+float volume = 0.05;
+int PosX = 400;
+
 void Menu();
 void Game();
 void Windows(){
@@ -13,4 +16,4 @@ void Shop();
 void History();
 void Settings();
 
-#endif 
+#endif
