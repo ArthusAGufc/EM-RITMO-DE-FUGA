@@ -36,11 +36,13 @@ void Menu(){
 
 
             if (PosY == 137 && IsKeyPressed(KEY_ENTER)){
-                /* code */
+                CloseWindow();
+                History();
             }
 
             else if (PosY == 197 && IsKeyPressed(KEY_ENTER)){
-                /* code */
+                CloseWindow();
+                shop();
             }
             
             else if (PosY == 257 && IsKeyPressed(KEY_ENTER)){
