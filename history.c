@@ -3,18 +3,40 @@
 
 
 void History(){
+    // Initialization 
+    const int screenWidth = 800;
+    const int screenHeight = 500;
 
-    Windows();
+    InitWindow(screenWidth, screenHeight, "Ritmo De Fuga");  
 
+    //Plano De Fundo
+    Texture2D background = LoadTexture("Imagens/History/historia.png");
     Music music = LoadMusicStream("Imagens/Music/Theme.wav");
+
+    SetTargetFPS(50);
     
-    while (!WindowShouldClose()){
+    // Main game loop
+    while (!WindowShouldClose()){// Detect window close button or ESC key
+        
         SetMusicVolume(music, volume);
         PlayMusicStream(music);
-
-
+        
+        if (IsKeyPressed(KEY_BACKSPACE)){
+            CloseWindow();
+            Menu();   
+        }
+        
+        BeginDrawing();
+            ClearBackground(BLACK);
+            DrawTextureV(background, (Vector2) {0,0},WHITE);
+        EndDrawing();  
+        
         UpdateMusicStream(music);
     }
 
+    UnloadTexture(background);
     UnloadMusicStream(music);
+
+    CloseWindow();
+    
 }
