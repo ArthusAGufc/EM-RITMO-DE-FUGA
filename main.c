@@ -1,11 +1,12 @@
 #include "raylib.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include <game.c>
 #include <credits.c>
 #include <shop.c>
 #include <history.c>
 #include <settings.c>
 #include "jogo.h"
-
 
 void Menu(){
         // Initialization 
@@ -59,8 +60,6 @@ void Menu(){
                 CloseWindow();
                 Settings();
             }
-
-
 
             BeginDrawing();
                 ClearBackground(BLACK);
