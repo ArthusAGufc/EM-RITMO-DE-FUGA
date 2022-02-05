@@ -80,7 +80,14 @@ void Game()
 
     // Bandido
     Spriteperson Skin1;
-    Skin1.personagem = LoadTexture("Imagens/Sprites/Skin1.png");
+    if (selecao == 1)
+        Skin1.personagem = LoadTexture("Imagens/Sprites/Skin1.png");
+    
+    if (selecao == 2)
+        Skin1.personagem = LoadTexture("Imagens/Sprites/Skin3.png");
+    
+    if (selecao == 3)
+        Skin1.personagem = LoadTexture("Imagens/Sprites/Skin2.png");
 
     Skin1.frames = 6;
     Skin1.frameAtual = 0;
