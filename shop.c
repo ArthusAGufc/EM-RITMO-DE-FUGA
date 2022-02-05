@@ -43,7 +43,7 @@ void shop(){
         }
 
         //Clicando nos botões.
-        if((PosY==451 && IsKeyPressed(KEY_ENTER)) || IsKeyPressed(KEY_BACKSPACE)){
+        if((PosY==451 && IsKeyPressed(KEY_ENTER)) ||IsKeyReleased(KEY_BACKSPACE)){
             CloseWindow();
             Menu();
         }else if(PosX==17 && IsKeyPressed(KEY_ENTER)){
@@ -84,3 +84,4 @@ void shop(){
 
     CloseWindow();
 }
+
