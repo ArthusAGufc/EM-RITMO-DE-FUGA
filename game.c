@@ -1,4 +1,6 @@
 #include "raylib.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include "jogo.h"
 
 typedef struct BandidoEhelicoptero
@@ -69,6 +71,10 @@ void Game()
     //Música
     Music music = LoadMusicStream("Imagens/Music/Theme.wav");
 
+    arquivo = fopen("HighScore.txt","r");
+    fscanf(arquivo,"%d",&highscore);
+    fclose(arquivo);
+
     // Posicao, movimentos, texturas
     //--------------------------------------------------------------------------------------
 
@@ -106,8 +112,7 @@ void Game()
     Policial1.Polpocicao[0] = (Vector2) {Policial1.PolicialEixoX = 200, Policial1.PolicialEixoY = 370};
     Policial1.Polsrect[0] = (Rectangle) {(rand()%3)*Policial1.larguraPolicial, 0, Policial1.larguraPolicial, Policial1.alturaPolicial};
 
-    for(int i = 0; i < Policial1.Poltamanho; i++)
-    {
+    for(int i = 0; i < Policial1.Poltamanho; i++){
         Policial1.Polpocicao[i] = (Vector2) { Policial1.Polpocicao[i-1].x + rand() % larguraTela + larguraTela/2, Policial1.PolicialEixoY = 370  };
 
         Policial1.Polsrect[i] = (Rectangle) { (rand()%3)*Policial1.larguraPolicial, 0, Policial1.larguraPolicial, Policial1.alturaPolicial };
@@ -177,6 +182,13 @@ void Game()
             }
         }
 
+        if(!FimDeJogo){
+            score = score + 1;
+            if(score > highscore){
+                highscore = score;
+            }
+        }
+
         // Carregar na tela
         //----------------------------------------------------------------------------------
         BeginDrawing(); 
@@ -195,9 +207,19 @@ void Game()
                 }
             }
 
+            DrawFPS(10,0);
+            DrawText(TextFormat("Score: %d",score),280,0,28,WHITE);
+            DrawText(TextFormat("HighScore: %d",highscore),520,0,28,WHITE);
 
             if(FimDeJogo) {
-                DrawText("CAPTURADO!", 400, 200, 60, LIGHTGRAY);
+                DrawText("CAPTURADO!", 200, 200, 60, LIGHTGRAY);
+                arquivo = fopen("HighScore.txt","w");
+                if(arquivo== NULL){
+                    printf("\nO Arquivo Não Pode Ser Aberto");
+                }else{
+                    fprintf(arquivo,"%d",highscore);
+                    fclose(arquivo);
+                }
             }
         EndDrawing();
 
