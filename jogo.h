@@ -8,7 +8,7 @@ int PosX = 400;
 FILE *arquivo;
 
 //Pontuação
-int score = 0;
+int score = 0, selecao = 1;
 int highscore = 0;
 
 void Menu();
