@@ -18,7 +18,7 @@ void Credits(){
         SetMusicVolume(music, volume);
         PlayMusicStream(music);
         
-        if (IsKeyPressed(KEY_BACKSPACE)){
+        if (IsKeyReleased(KEY_BACKSPACE)){
             CloseWindow();
             Menu();   
         }
