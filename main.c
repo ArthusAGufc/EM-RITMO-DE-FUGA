@@ -35,27 +35,27 @@ void Menu(){
             }
 
 
-            if (PosY == 137 && IsKeyPressed(KEY_ENTER)){
+            if (PosY == 137 &&  IsKeyReleased(KEY_ENTER)){
                 CloseWindow();
                 History();
             }
 
-            else if (PosY == 197 && IsKeyPressed(KEY_ENTER)){
+            else if (PosY == 197 && IsKeyReleased(KEY_ENTER)){
                 CloseWindow();
                 shop();
             }
             
-            else if (PosY == 257 && IsKeyPressed(KEY_ENTER)){
+            else if (PosY == 257 && IsKeyReleased(KEY_ENTER)){
                 CloseWindow();
                 Game();
             }
 
-            else if (PosY == 317 && IsKeyPressed(KEY_ENTER)){
+            else if (PosY == 317 && IsKeyReleased(KEY_ENTER)){
                 CloseWindow();
                 Credits();
             }
             
-            else if (PosY == 377 && IsKeyPressed(KEY_ENTER)){
+            else if (PosY == 377 && IsKeyReleased(KEY_ENTER)){
                 CloseWindow();
                 Settings();
             }
