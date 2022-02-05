@@ -2,7 +2,14 @@
 #define Ritmo
 
 float volume = 0.05;
-int PosX = 400;
+int PosX = 400; 
+
+//Arquivo
+FILE *arquivo;
+
+//Pontuação
+int score = 0;
+int highscore = 0;
 
 void Menu();
 void Game();
