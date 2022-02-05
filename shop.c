@@ -1,4 +1,6 @@
 #include "raylib.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include "jogo.h"
 
 void shop(){
@@ -8,6 +10,10 @@ void shop(){
     int pts=0; //variavel temporaria, mudar pelos pontos quando feitos.
     
     InitWindow(screenWidth,screenHeight, "Shop");
+
+    arquivo = fopen("HighScore.txt","r");
+    fscanf(arquivo,"%d",&highscore);
+    fclose(arquivo);
     
     //Imagem de fundo
     Texture2D tipeone = LoadTexture("Imagens/Shop/loja_tipo_1.png");
@@ -70,7 +76,8 @@ void shop(){
             }else{
                 DrawTextureV(tipeone, (Vector2) {0,0},WHITE);
             }
-            
+            DrawText(TextFormat("HighScore: %d",highscore),10,450,28,GREEN);
+
             DrawRectangleRoundedLines((Rectangle){PosX, PosY, 235, 30},0.3,5,5,LIGHTGRAY);
         EndDrawing();
         
