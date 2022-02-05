@@ -15,7 +15,7 @@ void Settings(){
         SetMusicVolume(music, volume); //Definindo volume da música
         PlayMusicStream(music);
 
-        if (IsKeyPressed(KEY_BACKSPACE)){
+        if (IsKeyReleased(KEY_BACKSPACE)){
             CloseWindow();
             Menu();   
         }
