@@ -1,7 +1,7 @@
 #ifndef Ritmo
 #define Ritmo
 
-float volume = 0.05;
+float volume = 0.15;
 int PosX = 400; 
 
 //Arquivo
