@@ -69,7 +69,7 @@ void Game()
     SetTargetFPS(60);
 
     //Música
-    Music music = LoadMusicStream("Imagens/Music/Theme.wav");
+    Music music = LoadMusicStream("Imagens/Music/battleThemeA.MP3");
 
     arquivo = fopen("HighScore.txt","r");
     fscanf(arquivo,"%d",&highscore);
@@ -194,6 +194,13 @@ void Game()
             score = score + 1;
             if(score > highscore){
                 highscore = score;
+                arquivo = fopen("HighScore.txt","w");
+                if(arquivo== NULL){
+                    printf("\nO Arquivo Não Pode Ser Aberto");
+                }else{
+                    fprintf(arquivo,"%d",highscore);
+                    fclose(arquivo);
+                }
             }
         }
 
@@ -221,13 +228,7 @@ void Game()
 
             if(FimDeJogo) {
                 DrawText("CAPTURADO!", 200, 200, 60, LIGHTGRAY);
-                arquivo = fopen("HighScore.txt","w");
-                if(arquivo== NULL){
-                    printf("\nO Arquivo Não Pode Ser Aberto");
-                }else{
-                    fprintf(arquivo,"%d",highscore);
-                    fclose(arquivo);
-                }
+                StopMusicStream(music);
             }
         EndDrawing();
 
@@ -240,10 +241,8 @@ void Game()
     UnloadTexture(Skin1.personagem);
     UnloadTexture(Policial1.Polpersonagem);
     
-   
     CloseWindow();
 
     Menu();
-
 
 }
