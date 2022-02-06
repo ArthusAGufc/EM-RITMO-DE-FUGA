@@ -77,6 +77,11 @@ void Game()
 
     // Posicao, movimentos, texturas
     //--------------------------------------------------------------------------------------
+    Texture2D background = LoadTexture("Imagens/Maps/Mapa.png");
+    Texture2D background2 = LoadTexture("Imagens/Maps/Mapa.png");
+
+    int PosXBackGround = 0;
+    int PosXBackGround2 = 800;
 
     // Bandido
     Spriteperson Skin1;
@@ -109,22 +114,22 @@ void Game()
 
     //Policial
     Policial Policial1;
-    Policial1.Polpersonagem = LoadTexture("Imagens/Sprites/Policial.png");
+    Policial1.Polpersonagem = LoadTexture("Imagens/Sprites/Carro.png");
 
     Policial1.Poltamanho =  sizeof(Policial1.Polsrect)/sizeof(Policial1.Polsrect[0]);
 
-    Policial1.larguraPolicial = 64;
-    Policial1.alturaPolicial = 64;
+    Policial1.larguraPolicial = 139;
+    Policial1.alturaPolicial = 47;
 
-    Policial1.Polpocicao[0] = (Vector2) {Policial1.PolicialEixoX = 200, Policial1.PolicialEixoY = 370};
+    Policial1.Polpocicao[0] = (Vector2) {Policial1.PolicialEixoX = 200, Policial1.PolicialEixoY = 380};
     Policial1.Polsrect[0] = (Rectangle) {(rand()%3)*Policial1.larguraPolicial, 0, Policial1.larguraPolicial, Policial1.alturaPolicial};
 
     for(int i = 0; i < Policial1.Poltamanho; i++){
-        Policial1.Polpocicao[i] = (Vector2) { Policial1.Polpocicao[i-1].x + rand() % larguraTela + larguraTela/2, Policial1.PolicialEixoY = 370  };
+        Policial1.Polpocicao[i] = (Vector2) { Policial1.Polpocicao[i-1].x + rand() % larguraTela + larguraTela/2, Policial1.PolicialEixoY = 380  };
 
         Policial1.Polsrect[i] = (Rectangle) { (rand()%3)*Policial1.larguraPolicial, 0, Policial1.larguraPolicial, Policial1.alturaPolicial };
     }
-    Policial1.Polvelocidade = 5;
+    Policial1.Polvelocidade = 7;
 
     bool Pular = false;
     bool FimDeJogo = false;
@@ -191,7 +196,15 @@ void Game()
         }
 
         if(!FimDeJogo){
-            score = score + 1;
+            PosXBackGround = PosXBackGround - 2;
+            PosXBackGround2 = PosXBackGround2 - 2;
+        }
+
+        if (PosXBackGround <= -800) PosXBackGround = 800;
+        if (PosXBackGround2 <= -800) PosXBackGround2 = 800; 
+        
+        if(!FimDeJogo){
+            score++;
             if(score > highscore){
                 highscore = score;
                 arquivo = fopen("HighScore.txt","w");
@@ -210,7 +223,8 @@ void Game()
 
             ClearBackground(GetColor(0x052c46ff));
 
-            DrawLine(0, 427, 800, 427, BLACK);                 
+            DrawTexture(background,PosXBackGround,0, WHITE);     
+            DrawTexture(background2,PosXBackGround2,0, WHITE);  
                 
             DrawTextureRec(Skin1.personagem, Skin1.srect[Skin1.frameAtual], Skin1.posicao, WHITE); // carregar skin na tela
 
@@ -229,6 +243,13 @@ void Game()
             if(FimDeJogo) {
                 DrawText("CAPTURADO!", 200, 200, 60, LIGHTGRAY);
                 StopMusicStream(music);
+                DrawText ("APERTE 'ENTER' PARA JOGAR NOVAMENTE",200,250,18,LIGHTGRAY);
+                if ( IsKeyReleased(KEY_ENTER) ){
+                    score = 0;
+                    CloseWindow();
+                    Game();
+                }
+
             }
         EndDrawing();
 
