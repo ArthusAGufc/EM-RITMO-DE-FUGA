@@ -13,7 +13,7 @@ void History(){
 
     //Plano De Fundo
     Texture2D background = LoadTexture("Imagens/History/historia.png");
-    Music music = LoadMusicStream("Imagens/Music/Juhani Junkala 5.wav");
+    Music music = LoadMusicStream("Imagens/Music/Theme.wav");
 
     SetTargetFPS(50);
     
