@@ -139,6 +139,7 @@ void Game()
         PlayMusicStream(music);
 
         if (IsKeyReleased(KEY_BACKSPACE)){
+            score = 0;
             CloseWindow();
             Menu();   
         }
