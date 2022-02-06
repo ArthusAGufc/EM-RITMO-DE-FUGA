@@ -1,4 +1,6 @@
 #include "raylib.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include "jogo.h"
 
 void Settings(){
@@ -7,7 +9,7 @@ void Settings(){
 
     //Carregando mídias
     Texture2D config = LoadTexture("Imagens/Credits/Config.png");
-    Music music = LoadMusicStream("Imagens/Music/Theme.wav");
+    Music music = LoadMusicStream("Imagens/Music/Juhani Junkala 5.wav");
     
     SetTargetFPS(50);
 
@@ -35,25 +37,25 @@ void Settings(){
         }
         
         if (PosX == 550)
-            volume = 0.10;
+            volume = 0.30;
         else if (PosX == 520)
-            volume = 0.09;
+            volume = 0.27;
         else if (PosX == 490)
-            volume = 0.08;
+            volume = 0.24;
         else if (PosX == 460)
-            volume = 0.07;
+            volume = 0.21;
         else if (PosX == 430)
-            volume = 0.06;
+            volume = 0.18;
         else if (PosX == 400)
-            volume = 0.05;
+            volume = 0.15;
         else if (PosX == 370)
-            volume = 0.04;
+            volume = 0.12;
         else if (PosX == 340)
-            volume = 0.03;
+            volume = 0.09;
         else if (PosX == 310)
-            volume = 0.02;
+            volume = 0.06;
         else if (PosX == 280)
-            volume = 0.01;
+            volume = 0.03;
         else if (PosX == 250)
             volume = 0;
 
