@@ -1,4 +1,6 @@
 #include "raylib.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include "jogo.h"
 
 
@@ -11,7 +13,7 @@ void History(){
 
     //Plano De Fundo
     Texture2D background = LoadTexture("Imagens/History/historia.png");
-    Music music = LoadMusicStream("Imagens/Music/Theme.wav");
+    Music music = LoadMusicStream("Imagens/Music/Juhani Junkala 5.wav");
 
     SetTargetFPS(50);
     
@@ -40,4 +42,3 @@ void History(){
     CloseWindow();
     
 }
-
