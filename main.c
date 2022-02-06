@@ -14,7 +14,7 @@ void Menu(){
         int PosY = 137; 
 
         //Plano De Fundo
-        Music music = LoadMusicStream("Imagens/Music/Theme.wav");
+        Music music = LoadMusicStream("Imagens/Music/Juhani Junkala 5.wav");
         Texture2D background = LoadTexture("Imagens/Menu/MainMenu-1.png");
         SetTargetFPS(50);
         
