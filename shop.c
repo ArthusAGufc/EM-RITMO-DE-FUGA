@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include "jogo.h"
 
-
-
 void shop(){
 
     const int screenWidth=800, screenHeight=500;
@@ -20,7 +18,7 @@ void shop(){
     Texture2D tipeone = LoadTexture("Imagens/Shop/loja_tipo_1.png");
     Texture2D tipetwo = LoadTexture("Imagens/Shop/loja_tipo_2.png");
     Texture2D tipetree = LoadTexture("Imagens/Shop/loja_tipo_3.png");
-    Music music = LoadMusicStream("Imagens/Music/Theme.wav");
+    Music music = LoadMusicStream("Imagens/Music/Juhani Junkala 5.wav");
 
     SetTargetFPS(60);
 
@@ -83,10 +81,8 @@ void shop(){
 
     }
 
-
     UnloadMusicStream(music);
     UnloadTexture(tipeone);
 
     CloseWindow();
 }
-
