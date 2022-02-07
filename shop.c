@@ -14,21 +14,23 @@ void shop(){
     fscanf(arquivo,"%d",&highscore);
     fclose(arquivo);
 
-    //Imagem de fundo
+    //Imagem da loja
     Texture2D tipeone = LoadTexture("Imagens/Shop/loja_tipo_1.png");
     Texture2D tipetwo = LoadTexture("Imagens/Shop/loja_tipo_2.png");
     Texture2D tipetree = LoadTexture("Imagens/Shop/loja_tipo_3.png");
+    //carrega a musica
     Music music = LoadMusicStream("Imagens/Music/Juhani Junkala 5.wav");
 
     SetTargetFPS(60);
 
     //Loop da loja
     while(!WindowShouldClose()){
-
+        
+        //colocando a musica na loja
         SetMusicVolume(music, volume);
         PlayMusicStream(music);
 
-        //Escolhendo os botões
+        //Escolhendo as pos dos botões
         if((IsKeyPressed(KEY_W)||IsKeyPressed(KEY_UP)) && PosX==282){
             PosY -= 56;
             if(PosY<395)
@@ -47,7 +49,7 @@ void shop(){
                 PosX=17;
         }
 
-        //Clicando nos botões.
+        //Ações dos botões.
         if((PosY==451 && IsKeyPressed(KEY_ENTER)) ||IsKeyReleased(KEY_BACKSPACE)){
             CloseWindow();
             Menu();
@@ -64,7 +66,8 @@ void shop(){
 
         BeginDrawing();
             ClearBackground(BLACK);
-
+            
+            //desenhando as imagens
             if(highscore>=5400){
                 DrawTextureV(tipetree, (Vector2) {0,0},WHITE);
             }else if(highscore>=2700){
@@ -72,8 +75,9 @@ void shop(){
             }else{
                 DrawTextureV(tipeone, (Vector2) {0,0},WHITE);
             }
+            //texto do highscore
             DrawText(TextFormat("HighScore: %d",highscore),10,450,28,DARKGRAY);
-
+            //desenho do contorno dos botões
             DrawRectangleRoundedLines((Rectangle){PosX, PosY, 235, 30},0.3,5,5,LIGHTGRAY);
         EndDrawing();
         
