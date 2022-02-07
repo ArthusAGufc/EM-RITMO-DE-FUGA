@@ -71,17 +71,18 @@ void Game()
     //Música
     Music music = LoadMusicStream("Imagens/Music/battleThemeA.MP3");
 
-    arquivo = fopen("HighScore.txt","r");
-    fscanf(arquivo,"%d",&highscore);
+    //Pontuação
+    arquivo = fopen("HighScore.txt","r"); //Abrir arquivo com a pontuação máxima
+    fscanf(arquivo,"%d",&highscore); //Lê a pontuação máxima
     fclose(arquivo);
 
     // Posicao, movimentos, texturas
     //--------------------------------------------------------------------------------------
-    Texture2D background = LoadTexture("Imagens/Maps/Mapa.png");
-    Texture2D background2 = LoadTexture("Imagens/Maps/Mapa.png");
+    Texture2D background = LoadTexture("Imagens/Maps/Mapa.png"); //Plano de fundo
+    Texture2D background2 = LoadTexture("Imagens/Maps/Mapa.png"); //Cópia do plano de fundo
 
-    int PosXBackGround = 0;
-    int PosXBackGround2 = 800;
+    int PosXBackGround = 0; //Posição do Plano de fundo 1
+    int PosXBackGround2 = 800; //Posição do Plano de fundo 2
 
     
     Spriteperson Skin1;
@@ -205,17 +206,20 @@ void Game()
         
         //FUNDO DO JOGO
         if(!FimDeJogo){
-            PosXBackGround = PosXBackGround - 2;
+            //Diminuir 2 da posição do plano de fundo enquanto não houver colisão
+            PosXBackGround = PosXBackGround - 2; 
             PosXBackGround2 = PosXBackGround2 - 2;
         }
 
+        //Quando a imagem ultrapassar o inicio da janela, inserir novamente no final da tela
         if (PosXBackGround <= -800) PosXBackGround = 800;
         if (PosXBackGround2 <= -800) PosXBackGround2 = 800; 
         
         if(!FimDeJogo){
-            score++;
-            if(score > highscore){
-                highscore = score;
+            score++;//Adiciona mais 1 a pontuação enquanto não houver colisão
+            if(score > highscore){ //Caso a pontuação seja maior que a pontuação máxima
+                highscore = score;//A pontuação máxima será igual a pontuação atual
+                //Salva a pontuação máxima em um arquivo
                 arquivo = fopen("HighScore.txt","w");
                 if(arquivo== NULL){
                     printf("\nO Arquivo Não Pode Ser Aberto");
