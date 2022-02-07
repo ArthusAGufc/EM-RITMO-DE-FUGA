@@ -83,8 +83,10 @@ void Game()
     int PosXBackGround = 0;
     int PosXBackGround2 = 800;
 
-    // Bandido
+    
     Spriteperson Skin1;
+    
+    //modificando as 'skin' do personagem
     if (selecao == 1)
         Skin1.personagem = LoadTexture("Imagens/Sprites/Skin1.png");
     
@@ -93,7 +95,8 @@ void Game()
     
     if (selecao == 3)
         Skin1.personagem = LoadTexture("Imagens/Sprites/Skin2.png");
-
+    
+    //Bandido
     Skin1.frames = 6;
     Skin1.frameAtual = 0;
     
@@ -199,7 +202,8 @@ void Game()
                 }
             }
         }
-
+        
+        //FUNDO DO JOGO
         if(!FimDeJogo){
             PosXBackGround = PosXBackGround - 2;
             PosXBackGround2 = PosXBackGround2 - 2;
