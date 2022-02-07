@@ -1,5 +1,5 @@
-#ifndef Ritmo
-#define Ritmo
+#ifndef Ritmo //Se não existir uma definição chamada Ritmo, está definição será criada
+#define Ritmo //Caso a definição Ritmo já exista
 
 float volume = 0.15;
 int PosX = 400; 
@@ -23,4 +23,4 @@ void Shop();
 void History();
 void Settings();
 
-#endif
+#endif //Fim da Definição
