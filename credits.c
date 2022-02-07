@@ -4,7 +4,7 @@
 #include "jogo.h"
 
 void Credits(){
-    // Initialization 
+    // Abrindo a janela
     Windows();
 
     //Plano De Fundo
@@ -16,7 +16,7 @@ void Credits(){
     SetTargetFPS(50);
     
     // Main game loop
-    while (!WindowShouldClose()){// Detect window close button or ESC key
+    while (!WindowShouldClose()){// Detecta de o botão de fechar a janela ou o ESQ foi apertado
         SetMusicVolume(music, volume);
         PlayMusicStream(music);
         
