@@ -69,7 +69,7 @@ void Settings(){
             DrawTextureV(config, (Vector2) {0, 0}, WHITE);
             DrawCircleLines(PosX, 203, 20, WHITE);
             DrawCircleV((Vector2) {PosX, 203}, 15, WHITE);
-        EndDrawing()
+        EndDrawing();
             
         UpdateMusicStream(music); //Atualizando a música
     }
