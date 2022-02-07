@@ -110,7 +110,7 @@ void Game()
     Skin1.tempo = 0;
     Skin1.tempoParaAnimar = 0.09;
 
-    Skin1.tempodepulo = 0;
+    Skin1.tempodepulo = 0; //Variável que irá contar o tempo no ar que o personagem está
 
     //Policial
     Policial Policial1;
@@ -148,7 +148,8 @@ void Game()
             CloseWindow();
             Menu();   
         }
-
+        
+        //Quando a tecla de pulo for pressionada
         if(IsKeyPressed(KEY_SPACE) || IsKeyPressed(KEY_UP))
             Pular = true;
 
@@ -159,14 +160,18 @@ void Game()
             // Pular o personagem
             if(Pular)
             {
-                Skin1.tempodepulo += 3;
-                if(Skin1.tempodepulo < 90 )
+                Skin1.tempodepulo += 3; // Aumentando o tempo no ar
+                
+                //Definindo um limite para o personagem subir
+                if(Skin1.tempodepulo < 90 ) 
                     Skin1.posicao.y -= 5;
                 
+                //Quando atinge 90 o personagem desce 
                 else
                     Skin1.posicao.y += 5;
             }
-
+            
+            //Quando tempo atingir o limite desativa o bool Pular e define o tempo de pulo para 0
             if(Skin1.tempodepulo >= 172.5)
             {
                 Skin1.tempodepulo = 0;
