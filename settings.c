@@ -4,7 +4,7 @@
 #include "jogo.h"
 
 void Settings(){
-    //Initialization
+    //Abrindo uma janela
     Windows();
 
     //Carregando mídias
@@ -15,20 +15,23 @@ void Settings(){
 
     while (!WindowShouldClose()){
         SetMusicVolume(music, volume); //Definindo volume da música
-        PlayMusicStream(music);
+        PlayMusicStream(music); //Iniciando a música
 
+        //Retornar ao Menu
         if (IsKeyReleased(KEY_BACKSPACE)){
             CloseWindow();
             Menu();   
         }
 
-
+        //Aumentar o volume do som do jogo
         if (IsKeyPressed(KEY_D) || IsKeyPressed(KEY_RIGHT)){
             PosX += 30;
             if (PosX>550){
                 PosX = 550;
             } 
         }
+        
+        //Diminuir o volume do som do jogo
         else if (IsKeyPressed(KEY_A) || IsKeyPressed(KEY_LEFT)){
             PosX -= 30;
             if (PosX<250){
@@ -36,6 +39,7 @@ void Settings(){
             } 
         }
         
+        //Diferentes variações do volume
         if (PosX == 550)
             volume = 0.30;
         else if (PosX == 520)
@@ -59,17 +63,19 @@ void Settings(){
         else if (PosX == 250)
             volume = 0;
 
-
+        //Adicionando as imagens e desenhos a tela
         BeginDrawing();
             ClearBackground(BLACK);
             DrawTextureV(config, (Vector2) {0, 0}, WHITE);
             DrawCircleLines(PosX, 203, 20, WHITE);
             DrawCircleV((Vector2) {PosX, 203}, 15, WHITE);
-        EndDrawing();
-
-        UpdateMusicStream(music);
+        EndDrawing()
+            
+        UpdateMusicStream(music); //Atualizando a música
     }
+    //Descarregando as mídias
     UnloadTexture(config);
     UnloadMusicStream(music);
+    
     CloseWindow();
 }
