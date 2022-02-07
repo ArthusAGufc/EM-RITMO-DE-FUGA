@@ -3,14 +3,14 @@
 #include <stdlib.h>
 #include "jogo.h"
 
-typedef struct BandidoEhelicoptero
+typedef struct Bandido
 {
     Vector2 posicao; // denominar posiçao no canvas
     Texture2D personagem; // Carregar imagem
     Rectangle srect[7]; // Deve ser maior que o numero de sprites, o bandido tem 6
 
-    int frames; 
-    int frameAtual;
+    int frames; // imagem inicial da spriteshet
+    int frameAtual; // imagem atual mostrada na spriteshet
    
     int largurapersonagem; // Largura de uma sprite
     int alturapersonagem; // Altura de uma sprite
@@ -21,14 +21,14 @@ typedef struct BandidoEhelicoptero
     long double tempo; // inicio da contagem, sempre 0
     float tempoParaAnimar; // velocidede de movimento da sprite
 
-    int tempodepulo; // apenas para Bandido
+    int tempodepulo; // "gravidade do jogo"
  
 }Spriteperson;
 
 typedef struct Policial
 {
-    Vector2 Polpocicao[60];
-    Texture2D Polpersonagem;
+    Vector2 Polpocicao[60]; // denominar posiçao no canvas
+    Texture2D Polpersonagem; // Carregar imagem
     Rectangle Polsrect[60];
 
     int larguraPolicial;
@@ -43,11 +43,11 @@ typedef struct Policial
 
 }Policial;
 
-void animar_spritesperson(Spriteperson* b)
+void animar_spritesperson(Spriteperson* b) // funcao para fazer efeito de movimento da sprite
 {
-    b->tempo += GetFrameTime();
+    b->tempo += GetFrameTime(); // setagem das variaves da struct Spriteperson
 
-    if(b->tempo > b->tempoParaAnimar){
+    if(b->tempo > b->tempoParaAnimar){ // essas codicionais servem para determinar a velocidade do movimento da sprite e a ordem de exibiçao
         b->frameAtual++;
         b->tempo = 0;
     }
@@ -85,7 +85,7 @@ void Game()
     int PosXBackGround2 = 800; //Posição do Plano de fundo 2
 
     
-    Spriteperson Skin1;
+    Spriteperson Skin1; // Criacao de struct 
     
     //modificando as 'skin' do personagem
     if (selecao == 1)
@@ -97,16 +97,16 @@ void Game()
     if (selecao == 3)
         Skin1.personagem = LoadTexture("Imagens/Sprites/Skin2.png");
     
-    //Bandido
+    //Bandido (Spritepersom)  atribuicao de valores as variaveis da struct
     Skin1.frames = 6;
     Skin1.frameAtual = 0;
     
     Skin1.largurapersonagem = 46;
     Skin1.alturapersonagem = 57;
 
-    Skin1.posicao = (Vector2) {Skin1.personagemEixoX = 100, Skin1.personagemEixoY = 370};
+    Skin1.posicao = (Vector2) {Skin1.personagemEixoX = 100, Skin1.personagemEixoY = 370}; // posicao no canvas
 
-    for(int i = 0; i < Skin1.frames; i++)
+    for(int i = 0; i < Skin1.frames; i++) // laço para determinar o tamanho do retangulo ao redor da sprite
     {
         Skin1.srect[i] = (Rectangle) { Skin1.largurapersonagem * i, 0, Skin1.largurapersonagem, Skin1.alturapersonagem };
     }
@@ -116,7 +116,7 @@ void Game()
 
     Skin1.tempodepulo = 0; //Variável que irá contar o tempo no ar que o personagem está
 
-    //Policial
+    //Policial (Policial)  atribuicao de valores as variaveis da struct
     Policial Policial1;
     Policial1.Polpersonagem = LoadTexture("Imagens/Sprites/Carro.png");
 
@@ -128,12 +128,12 @@ void Game()
     Policial1.Polpocicao[0] = (Vector2) {Policial1.PolicialEixoX = 200, Policial1.PolicialEixoY = 380};
     Policial1.Polsrect[0] = (Rectangle) {(rand()%3)*Policial1.larguraPolicial, 0, Policial1.larguraPolicial, Policial1.alturaPolicial};
 
-    for(int i = 0; i < Policial1.Poltamanho; i++){
+    for(int i = 0; i < Policial1.Poltamanho; i++){ // laco for responsavel por movimentar no eixo x em direçao ao boneco
         Policial1.Polpocicao[i] = (Vector2) { Policial1.Polpocicao[i-1].x + rand() % larguraTela + larguraTela/2, Policial1.PolicialEixoY = 380  };
-
+        // determinar o tamanho do retangulo ao redor da sprite
         Policial1.Polsrect[i] = (Rectangle) { (rand()%3)*Policial1.larguraPolicial, 0, Policial1.larguraPolicial, Policial1.alturaPolicial };
     }
-    Policial1.Polvelocidade = 7;
+    Policial1.Polvelocidade = 7; // velocidade de deslocamento do inimigo 
 
     bool Pular = false;
     bool FimDeJogo = false;
@@ -181,7 +181,7 @@ void Game()
                 Skin1.tempodepulo = 0;
                 Pular = false;
             }
-
+            // Esse laço determina que apos sair do canvas, as sprites de inimigos retornem do outro lado
             for( int i = 0; i < Policial1.Poltamanho; i++ )
             {
                 if(Policial1.Polpocicao[i].x < -Policial1.larguraPolicial*2)
@@ -190,7 +190,7 @@ void Game()
                 }
                 Policial1.Polpocicao[i].x -= Policial1.Polvelocidade;
             }
-
+            // Laco para identificar a colisao entre os retangulos que sercam a sprite do bandido e do carro
             for( int i = 0; i < Policial1.Poltamanho; i++)
             {
                 if( Policial1.Polpocicao[i].x > 0 && Policial1.Polpocicao[i].x < larguraTela )
@@ -230,18 +230,18 @@ void Game()
             }
         }
 
-        // Carregar na tela
+        // Carregar na tela ( exibir )
         //----------------------------------------------------------------------------------
         BeginDrawing(); 
 
-            ClearBackground(GetColor(0x052c46ff));
+            ClearBackground(GetColor(0x052c46ff)); // cor de fundo(Azul claro)
 
-            DrawTexture(background,PosXBackGround,0, WHITE);     
+            DrawTexture(background,PosXBackGround,0, WHITE);    
             DrawTexture(background2,PosXBackGround2,0, WHITE);  
                 
             DrawTextureRec(Skin1.personagem, Skin1.srect[Skin1.frameAtual], Skin1.posicao, WHITE); // carregar skin na tela
 
-            for( int i = 0; i < Policial1.Poltamanho; i++ )
+            for( int i = 0; i < Policial1.Poltamanho; i++ ) // carregar skin na tela
             {
                 if(Policial1.Polpocicao[i].x > -Policial1.larguraPolicial && Policial1.Polpocicao[i].x < larguraTela)
                 {
